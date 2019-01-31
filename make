@@ -9,6 +9,8 @@ ABI=$CPU
 TLIB="lib"
 
 export NDKVER="r13b"
+export NDK="/home/silentlexx/Android/android-ndk-$NDKVER"
+
 export API=21
 export LLVM="false"
 NEWSYSROOT="false"
@@ -74,7 +76,6 @@ then
     STL="llvm-libc++"
 fi
 
-export NDK="/home/silentlexx/Android/android-ndk-$NDKVER"
 export TOOLCHAIN="$NDK/toolchains/$TBIN/prebuilt/linux-x86_64"
 export PLATFORM="$NDK/platforms/android-$API/arch-$CPU"
 export PATH="$PATH:$TOOLCHAIN/bin"
