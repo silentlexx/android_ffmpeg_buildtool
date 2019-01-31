@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CPU=${1}
+
+#./make faac $CPU
+#./make flac $CPU
+./make x265 $CPU
+./make x264 $CPU
+./make libvpx $CPU
+./make lame $CPU
+./make fdk-aac $CPU
+./make libpng $CPU
+./make libogg $CPU
+./make vorbis $CPU
+./make theora $CPU
+./make opus $CPU
+./make ffmpeg $CPU
