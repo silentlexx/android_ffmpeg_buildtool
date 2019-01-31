@@ -1,4 +1,4 @@
-# Build static ffmpeg bin for Android arm/x86 (api 21)
+# Build static ffmpeg bin for Android arm/x86 (NDK r13b, API 21)
 
 ./make x264 arm #to build libx264 for arm
 
