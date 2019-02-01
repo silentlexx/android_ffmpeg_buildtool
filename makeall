@@ -2,14 +2,22 @@
 
 CPU=${1}
 
+
 #./make faac $CPU
-#./make flac $CPU
+./make zlib $CPU
+./make libpng $CPU
+./make freetype $CPU
+./make fribidi $CPU
+./make libass $CPU
+./make libuuid $CPU
+./make libxml2 $CPU
+./make fontconfig $CPU
+./make xvidcore $CPU
 ./make x265 $CPU
 ./make x264 $CPU
 ./make libvpx $CPU
 ./make lame $CPU
 ./make fdk-aac $CPU
-./make libpng $CPU
 ./make libogg $CPU
 ./make vorbis $CPU
 ./make theora $CPU
