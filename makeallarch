@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./makeall arm
+./makeall x86
+./makeall x86_64
+./makeall arm64
+ls ./build
