@@ -9,9 +9,10 @@ make clean
 
 export LIBS="-lc -lm"
 
+
 ./bootstrap.sh
 
-./configure --prefix=$PREFIX $HOST --disable-pthread --disable-assembly --disable-shared --enable-static
+./configure --prefix=$PREFIX $HOST --disable-shared --enable-static
 
 make -j8
 make install

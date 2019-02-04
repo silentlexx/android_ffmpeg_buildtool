@@ -7,12 +7,14 @@ rm Makefile
 
 export LIBS="-lc -lgcc"
 
-./configure --prefix=$PREFIX $HOST  --disable-shared
+export CFLAGS=$(echo $CFLAGS | sed -i 's/\-ffast\-math//g')
 
-make -j8
+./configure --prefix=$PREFIX $HOST  --disable-shared || exit 1
+
+make -j8 || exit 1
 make install
 
-if [ $CPU=="x86" ];
+if [ $CPU == "x86" ];
 then
    cat ./libopus.la > $PREFIX/lib/libopus.la
    cat ./opus.pc > $PREFIX/lib/pkgconfig/opus.pc

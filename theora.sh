@@ -10,7 +10,7 @@ export LIBS="-lc -lgcc -logg -lvorbis"
 
 autoreconf -f -i
 
-./configure --prefix=$PREFIX $HOST --disable-examples --disable-doc --disable-shared --disable-asm
+./configure --prefix=$PREFIX $HOST --disable-examples --disable-doc --disable-shared # --disable-asm
 
 make cleanmake -j8
 make install

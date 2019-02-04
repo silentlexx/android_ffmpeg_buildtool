@@ -19,13 +19,23 @@ VER="4.1"
 
 if [ $CPU == "arm" ];
 then
-  export $CPU="cortex-a8"
+  export $CPU="arm"
+  FIXES="--enable-asm --enable-neon"
 fi
-
 
 if [ $CPU == "x86" ];
 then
-  FIXES="--disable-asm"
+  FIXES="--enable-asm"
+fi
+
+if [ $CPU == "arm64" ];
+then
+  FIXES="--enable-asm --enable-neon"
+fi
+
+if [ $CPU == "x86_64" ];
+then
+  FIXES="--enable-asm"
 fi
 
 export EXPEREMETAL="--enable-runtime-cpudetect --enable-hardcoded-tables --enable-small --enable-version3"
@@ -48,17 +58,18 @@ export FLAGS="--enable-gpl --enable-version3 --enable-nonfree --disable-demuxer=
     --cross-prefix=$target_host- \
     --target-os=android \
     --enable-cross-compile --pkg-config-flags="--static" \
-    --extra-libs="-lgnustl_static -lm"\
-     $FIXES $EXPEREMETAL
+    --extra-libs="-lgnustl_static -lm -lpng -l:libz.so -lpthread" \
+     $FIXES $EXPEREMETAL || exit 1
     
 echo "Press enter"
-read
-
+#read
 
 make -j8 || exit 1
 make install 
 
+cat ffmpeg > "../build/ffmpeg-${VER}_${CPU}"
 cat ffmpeg > "../../app/src/main/assets/ffmpeg-${VER}_${CPU}"
+
 
 readelf --program-headers ffmpeg
 

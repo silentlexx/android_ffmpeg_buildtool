@@ -33,7 +33,7 @@ includedir=$PREFIX/include
 Name: Freetype 2
 Description: Freetype2
 Requires: 
-Requires.private: zlib, libpng
+Requires.private:
 Version: 21.0.15
-Libs: -L\${libdir} -lfreetype
+Libs: -L\${libdir} -lfreetype -lm -lpng
 Cflags: -I\${includedir}/freetype2" > $PREFIX/lib/pkgconfig/freetype2.pc
