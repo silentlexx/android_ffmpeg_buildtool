@@ -40,7 +40,8 @@ fi
 
 export EXPEREMETAL="--enable-runtime-cpudetect --enable-hardcoded-tables --enable-small --enable-version3"
 
-export FLAGS="--enable-gpl --enable-version3 --enable-nonfree --disable-demuxer=rtp,rtsp --disable-muxer=rtp,rtsp,rtp_mpegts --disable-indev=v4l2 --enable-libmp3lame --enable-libx264  --enable-libx265 --enable-libvpx --enable-libvorbis --enable-libtheora --enable-libopus --enable-libfdk-aac --enable-libfreetype --enable-libass --enable-libfribidi --enable-fontconfig --enable-pthreads --enable-libxvid --enable-filters"
+export FLAGS="--enable-gpl --enable-version3 --enable-nonfree --disable-demuxer=rtp,rtsp --disable-muxer=rtp,rtsp,rtp_mpegts --disable-indev=v4l2 --enable-libmp3lame --enable-libx264  --enable-libx265 --enable-libvpx --enable-libvorbis --enable-libtheora --enable-libopus --enable-libfdk-aac --enable-libfreetype --enable-libass --enable-libfribidi --enable-fontconfig --enable-pthreads --enable-libxvid --enable-filters 
+--enable-libopencore-amrwb --enable-libopencore-amrnb --enable-libvo-amrwbenc"
 
 
 ./configure $FLAGS \

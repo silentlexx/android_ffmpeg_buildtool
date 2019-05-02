@@ -8,6 +8,7 @@ rm Makefile
 TARGET=$CPU
 
 ADDI_CFLAGS=""
+ASFLAGS="-D__ANDROID__"
 
 if [ $CPU == "arm" ];
 then 
@@ -23,25 +24,26 @@ fi
 
 if [ $CPU == "x86" ];
 then 
-  export ASFLAGS="-D__ANDROID__"
-  export AS="nasm"
+  export CFLAGS="$CFLAGS -D__ANDROID__ -std=c11 -D__ANDROID_API__=15"
+  export AS="yasm"
 fi
 
 if [ $CPU == "x86_64" ];
 then 
-  export ASFLAGS="-D__ANDROID__"
-  export AS="nasm"
+  export CFLAGS="$CFLAGS -D__ANDROID__ -std=c11"
+  export AS="yasm"
 fi
 
 ../fixobj.sh $PLATFORM $(pwd)
 
-export LIBS="-lc -lgcc"
+export LIBS="-lc -lgcc -lm"
 
-./configure --prefix=$PREFIX  --disable-install-bins --cpu=$SO_CPU --disable-shared --enable-vp8 --enable-vp9 --enable-thumb  \
---enable-pic  --disable-sse4_1 \
+./configure --prefix=$PREFIX  --disable-install-bins --cpu=$SO_CPU $FIX \
+--disable-shared --enable-vp8 --enable-vp9 --enable-thumb  \
+--enable-pic \
 --target=$TARGET-linux-gcc \
---disable-examples \
---extra-cflags="$ADDI_CFLAGS" 
+--disable-examples 
+
 
 #read
 

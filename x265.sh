@@ -33,14 +33,14 @@ fi
 if [ $CPU == "x86" ];
 then 
   export ASM="/usr/bin/nasm"
-  ENABLE_ASSEMBLY="ON"
+  ENABLE_ASSEMBLY="OFF"
   CROSS_COMPILE_ARM="OFF"
 fi
 
 if [ $CPU == "x86_64" ];
 then 
   export ASM="/usr/bin/nasm"
-  ENABLE_ASSEMBLY="ON"
+  ENABLE_ASSEMBLY="OFF"
   CROSS_COMPILE_ARM="OFF"
 fi
 

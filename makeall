@@ -4,6 +4,8 @@ CPU=${1}
 
 ./make pthread $CPU
 ./make fdk-aac $CPU
+./make opencore-amr $CPU
+./make vo-amrwbenc $CPU
 ./make libogg $CPU
 ./make x265 $CPU
 ./make x264 $CPU
