@@ -47,5 +47,5 @@ export LIBS="-lc -lgcc -lm"
 
 #read
 
-make V=1 -j8
+make V=1 $J
 make install

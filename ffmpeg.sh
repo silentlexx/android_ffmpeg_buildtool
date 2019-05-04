@@ -38,9 +38,9 @@ then
   FIXES="--enable-asm"
 fi
 
-export EXPEREMETAL="--enable-runtime-cpudetect --enable-hardcoded-tables --enable-small --enable-version3"
-
-export FLAGS="--enable-gpl --enable-version3 --enable-nonfree --disable-demuxer=rtp,rtsp --disable-muxer=rtp,rtsp,rtp_mpegts --disable-indev=v4l2 --enable-libmp3lame --enable-libx264  --enable-libx265 --enable-libvpx --enable-libvorbis --enable-libtheora --enable-libopus --enable-libfdk-aac --enable-libfreetype --enable-libass --enable-libfribidi --enable-fontconfig --enable-pthreads --enable-libxvid --enable-filters 
+export EXPEREMETAL="--enable-runtime-cpudetect --enable-hardcoded-tables --enable-version3"
+export FLAGS="--enable-gpl --enable-nonfree --disable-indev=v4l2 
+--enable-libmp3lame --enable-libx264  --enable-libx265 --enable-libvpx --enable-libvorbis --enable-libtheora --enable-libopus --enable-libfdk-aac --enable-libfreetype --enable-libass --enable-libfribidi --enable-fontconfig --enable-pthreads --enable-libxvid --enable-filters --enable-openssl --enable-librtmp --disable-protocol=udp,udplite
 --enable-libopencore-amrwb --enable-libopencore-amrnb --enable-libvo-amrwbenc"
 
 
@@ -52,8 +52,7 @@ export FLAGS="--enable-gpl --enable-version3 --enable-nonfree --disable-demuxer=
     --enable-static \
     --enable-pic \
     --enable-ffmpeg --disable-ffplay --disable-ffprobe --disable-ffnvcodec  \
-    --disable-network \
-    --disable-avdevice  --enable-small --disable-debug \
+    --disable-avdevice --disable-debug \
     --disable-doc --disable-htmlpages --disable-manpages --disable-podpages --disable-txtpages \
     --disable-symver \
     --cross-prefix=$target_host- \
@@ -63,9 +62,9 @@ export FLAGS="--enable-gpl --enable-version3 --enable-nonfree --disable-demuxer=
      $FIXES $EXPEREMETAL || exit 1
     
 echo "Press enter"
-#read
+read
 
-make -j8 || exit 1
+make $J || exit 1
 make install 
 
 cat ffmpeg > "../build/ffmpeg-${VER}_${CPU}"

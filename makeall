@@ -23,4 +23,5 @@ CPU=${1}
 ./make vorbis $CPU
 ./make theora $CPU
 ./make opus $CPU
+./make openssl $CPU
 ./make ffmpeg $CPU

@@ -35,4 +35,4 @@ fi
 
 ./configure --prefix=$PREFIX --exec-prefix=$PREFIX --host=$ABI-linux --sysroot=$SYSROOT --enable-static --enable-strip --enable-pic $FIX
 
-make -j8 install
+make $J install

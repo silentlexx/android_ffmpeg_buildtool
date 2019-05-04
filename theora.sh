@@ -12,5 +12,5 @@ autoreconf -f -i
 
 ./configure --prefix=$PREFIX $HOST --disable-examples --disable-doc --disable-shared # --disable-asm
 
-make cleanmake -j8
+make cleanmake $J
 make install

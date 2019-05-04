@@ -60,5 +60,5 @@ cmake -DCMAKE_INSTALL_PREFIX=$PREFIX  -DCMAKE_SYSROOT=$SYSROOT -DCMAKE_TOOLCHAIN
 #pwdasm=$(echo $ASM | sed 's_/_\\/_g')
 #sed -i -e "s/$pwdasm --sysroot=$pwdesc/$pwdasm /g" ./CMakeFiles/png_static.dir/build.make
 
-make -j8
+make $J
 make install

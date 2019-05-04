@@ -3,6 +3,7 @@
 SCRIPT=${1}
 export CPU=${2}
 
+export J="-j6"
 
 export ABI=$CPU
 
@@ -99,7 +100,8 @@ export PREFIX=$(pwd)/build/${CPU}-api${API}-${NDKVER}
 export CXX_STL="$NDK/sources/cxx-stl/$STL"
 export CXX_STL_LIBS="$NDK/sources/cxx-stl/$STL/libs/$SO_ARCH"
 export CPUABI=$ABI
-export LDFLAGS="-Wl,-rpath-link=$PLATFORM/usr/lib --sysroot=$SYSROOT -L$PLATFORM/usr/lib -L$PREFIX/lib -L$NDK/sysroot/usr/lib/$TARGET -L$TOOLCHAIN/lib/gcc/$TARGET/$GCCVER.x -L$CXX_STL_LIBS -fPIE -pie"
+export LIBSFLAGS="-L$PLATFORM/usr/lib -L$PREFIX/lib -L$NDK/sysroot/usr/lib/$TARGET -L$TOOLCHAIN/lib/gcc/$TARGET/$GCCVER.x -L$CXX_STL_LIBS"
+export LDFLAGS="-Wl,-rpath-link=$PLATFORM/usr/lib --sysroot=$SYSROOT $LIBSFLAGS -fPIE -pie"
 export CPPFLAGS="-I$PLATFORM/usr/include -I$PREFIX/include -I$NDK/sysroot/usr/include -I$NDK/sysroot/usr/include/$TARGET -I$CXX_STL/include -I$CXX_STL_LIBS/include"
 export CFLAGS_TOOLCHAIN="-fPIC -DANDROID -D__ANDROID_API__=$API -D__ANDROID__ -DPIC -nostdlib  $ADDI_CFLAGS $CPPFLAGS -lc"
 export CFLAGS="$CFLAGS_TOOLCHAIN -O3 --sysroot=$SYSROOT "

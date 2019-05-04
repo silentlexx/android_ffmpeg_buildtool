@@ -11,5 +11,5 @@ export LIBS="-lc -lgcc -lpng"
 
 ./configure --prefix=$PREFIX $HOST --with-sysroot=$SYSROOT --disable-shared --enable-static --disable-docs --disable-nls --enable-libxml2
 
-make -j8
+make $J
 make install

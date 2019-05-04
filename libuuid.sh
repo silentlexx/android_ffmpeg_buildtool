@@ -10,6 +10,6 @@ autoreconf -f -i
 
 ./configure --prefix=$PREFIX $HOST --disable-shared --enable-static
 
-make -j8
+make $J
 make install
 

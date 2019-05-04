@@ -15,5 +15,5 @@ export LIBS="-lc -lgcc"
 
 ./configure --prefix=$PREFIX $HOST --enable-static --disable-shared --with-sysroot=$SYSROOT
 
-make -j8
+make $J
 make install

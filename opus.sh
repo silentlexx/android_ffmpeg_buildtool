@@ -11,7 +11,7 @@ export CFLAGS=$(echo $CFLAGS | sed -i 's/\-ffast\-math//g')
 
 ./configure --prefix=$PREFIX $HOST  --disable-shared || exit 1
 
-make -j8 || exit 1
+make $J || exit 1
 make install
 
 if [ $CPU == "x86" ];
