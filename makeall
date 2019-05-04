@@ -24,4 +24,5 @@ CPU=${1}
 ./make theora $CPU
 ./make opus $CPU
 ./make openssl $CPU
+./make librtmp $CPU
 ./make ffmpeg $CPU
