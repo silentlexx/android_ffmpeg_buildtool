@@ -9,7 +9,6 @@ CPU=${1}
 ./make libogg $CPU
 ./make x265 $CPU
 ./make x264 $CPU
-#./make zlib $CPU
 ./make libpng $CPU
 ./make freetype $CPU
 ./make fribidi $CPU
@@ -25,4 +24,10 @@ CPU=${1}
 ./make opus $CPU
 ./make openssl $CPU
 ./make librtmp $CPU
+./make speex $CPU
+./make libsoxr $CPU
+./make wavpack $CPU
+./make xavc $CPU
+./make xavc2 $CPU
+./make libwebp $CPU
 ./make ffmpeg $CPU

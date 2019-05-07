@@ -1,13 +1,13 @@
 #!/bin/bash
 
-cd libogg
+cd speex
 
 make clean
 rm Makefile
 
-export LIBS="-lc -lgcc"
+export LIBS="-lc"
 
-autoreconf -f -i
+#autoreconf -f -i
 
 ./configure --prefix=$PREFIX $HOST --disable-shared
 

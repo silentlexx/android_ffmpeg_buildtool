@@ -36,8 +36,7 @@ then
     TBIN="arm-linux-androideabi-$GCCVER"  
     export CMAKE_CPU="armv7-a"
     export TARGET="arm-linux-androideabi"
-    export ADDI_CFLAGS="-fpic -mcpu=cortex-a8 -march=armv7-a -mfpu=neon -mthumb -mfloat-abi=softfp  \
-             -DNDEBUG"
+    export ADDI_CFLAGS="-fpic -march=armv7-a -mfpu=neon -mthumb -mfloat-abi=softfp"
     export SO_ARCH="armeabi-v7a"
     CLANG_TARGET="armv7a-linux-androideabi"
     export API=18
@@ -51,8 +50,7 @@ then
     TBIN="aarch64-linux-android-$GCCVER"
     export TARGET="aarch64-linux-android"
     export SO_ARCH="arm64-v8a"
-    export ADDI_CFLAGS="-fpic -march=armv8-a \
-             -DNDEBUG"
+    export ADDI_CFLAGS="-fpic -march=armv8-a"
     CLANG_TARGET=$TARGET
 fi
 
