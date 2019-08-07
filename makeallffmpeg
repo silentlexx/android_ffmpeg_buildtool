@@ -1,0 +1,13 @@
+#!/bin/bash
+
+./make ffmpeg arm
+./make ffmpeg x86
+./make ffmpeg x86_64
+./make ffmpeg arm64
+
+#exit 0
+
+./make ffmpeg_lite arm
+./make ffmpeg_lite x86
+./make ffmpeg_lite x86_64
+./make ffmpeg_lite arm64

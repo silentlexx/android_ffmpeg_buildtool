@@ -8,7 +8,7 @@ cd out
 
 make clean
 
-export LIBS="-lc -lm"
+export LIBS="-lc -lm -lpthread"
 
 # for arm remove pixel_avg_pp calc_Residual ssd_s  chroma add_ps
 
@@ -25,7 +25,7 @@ if [ $CPU == "arm64" ];
 then
     export CFLAGS="$CFLAGS -O3 -D__ARM_ARCH_8__ -D__ARM_ARCH_8A__ -DANDROID_ABI=arm64-v8a -DHAVE_NEON -DX265_ARCH_ARM"
     export ASM=$AS_ORIG
-        export CMAKE_ASM_FLAGS=$CFLAGS
+    export CMAKE_ASM_FLAGS=$CFLAGS
     ENABLE_ASSEMBLY="OFF"
     CROSS_COMPILE_ARM="ON"
 fi
