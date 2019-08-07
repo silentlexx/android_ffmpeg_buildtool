@@ -8,7 +8,7 @@ cd out
 
 make clean
 
-export LIBS="-lc -lm"
+export LIBS="-lc -lm -lpthread"
 
 # for arm remove pixel_avg_pp calc_Residual ssd_s  chroma add_ps
 
@@ -19,15 +19,19 @@ then
     export CMAKE_ASM_FLAGS=$CFLAGS
     ENABLE_ASSEMBLY="OFF"
     CROSS_COMPILE_ARM="ON"
+    ARM="ON"
+    ARM64="OFF"
 fi
 
 if [ $CPU == "arm64" ];
 then
     export CFLAGS="$CFLAGS -O3 -D__ARM_ARCH_8__ -D__ARM_ARCH_8A__ -DANDROID_ABI=arm64-v8a -DHAVE_NEON -DX265_ARCH_ARM"
     export ASM=$AS_ORIG
-        export CMAKE_ASM_FLAGS=$CFLAGS
+    export CMAKE_ASM_FLAGS=$CFLAGS
     ENABLE_ASSEMBLY="OFF"
     CROSS_COMPILE_ARM="ON"
+    ARM="ON"
+    ARM64="ON"
 fi
 
 if [ $CPU == "x86" ];
@@ -35,6 +39,8 @@ then
   export ASM="/usr/bin/nasm"
   ENABLE_ASSEMBLY="OFF"
   CROSS_COMPILE_ARM="OFF"
+    ARM="OFF"
+    ARM64="OFF"
 fi
 
 if [ $CPU == "x86_64" ];
@@ -42,6 +48,8 @@ then
   export ASM="/usr/bin/nasm"
   ENABLE_ASSEMBLY="OFF"
   CROSS_COMPILE_ARM="OFF"
+  ARM="OFF"
+  ARM64="OFF"
 fi
 
 CCMF=$(pwd)/crosscompile.cmake
@@ -56,7 +64,7 @@ set(CMAKE_CXX_LINK_EXECUTABLE $LD)
 set(CMAKE_CXX_LINK_EXECUTABLE $LD)
 set(CMAKE_ASM_COMPILER $ASM)
 set(CMAKE_FIND_ROOT_PATH $PLATFORM)
-et(CMAKE_SYSROOT $SYSROOT)" > $CCMF
+set(CMAKE_SYSROOT $SYSROOT)" > $CCMF
 
 #-DCMAKE_TOOLCHAIN_FILE=$CCM
 
@@ -69,6 +77,9 @@ cmake -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_SYSROOT=$SYSROOT  -DCMAKE_C_FLAGS="
   -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
   -DCMAKE_FIND_ROOT_PATH=$PLATFORM \
   -DANDROID_PIE=ON \
+  -DENABLE_HDR10_PLUS=OFF \
+  -DARM=$ARM \
+  -DARM64=$ARM64 \
        -DENABLE_SHARED=OFF \
        -DCROSS_COMPILE_ARM=$CROSS_COMPILE_ARM \
        -DENABLE_ASSEMBLY=$ENABLE_ASSEMBLY \
@@ -81,4 +92,4 @@ cmake -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_SYSROOT=$SYSROOT  -DCMAKE_C_FLAGS="
        -DSTATIC_LINK_CRT=YES \
    ../source && make VERBOSE=1 -j8 && make install
 #ccmake ../source 
-   
+

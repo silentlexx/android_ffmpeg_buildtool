@@ -27,7 +27,10 @@ CPU=${1}
 ./make speex $CPU
 ./make libsoxr $CPU
 ./make wavpack $CPU
-./make xavc $CPU
-./make xavc2 $CPU
+./make xavs $CPU
+./make xavs2 $CPU
 ./make libwebp $CPU
+./make openh264 $CPU
+./make libdav1d $CPU
+./make aom $CPU
 ./make ffmpeg $CPU

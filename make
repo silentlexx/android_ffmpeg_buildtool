@@ -1,15 +1,20 @@
 #!/bin/bash
 
+
+
 SCRIPT=${1}
 export CPU=${2}
 
-export J="-j6"
+export J="-j8"
 
 export ABI=$CPU
 
 TLIB="lib"
 
+export PATH=/home/silentlexx/Android/Sdk/tools:$PATH
+
 export NDKVER="r13b"
+#export NDKVER="r20"
 export NDK="/home/silentlexx/Android/android-ndk-$NDKVER"
 export API=21
 export GCCVER="4.9"
@@ -19,7 +24,7 @@ NEWSYSROOT="false"
 export LANG=en_US.UTF-8
 export LANGUAGE=en
 
-if [ $NDKVER == "r19" ];
+if [ $NDKVER == "r20" ];
 then
     export LLVM="true"
     NEWSYSROOT="true"

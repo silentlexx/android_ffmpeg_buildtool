@@ -1,15 +1,6 @@
 #!/bin/bash
 
-if [ $LLVM == "true" ];
-then
-    cd ffmpeg-clang
-fi
-
-if [ $LLVM == "false" ];
-then
-    cd ffmpeg
-fi
-
+cd ffmpeg
 
 rm ffmpeg
 make clean
@@ -30,19 +21,16 @@ fi
 
 if [ $CPU == "arm64" ];
 then
-  FIXES="--enable-asm --enable-neon --enable-libxavs2"
+  FIXES="--enable-asm --enable-neon --enable-libxavs2 --enable-libdav1d --enable-libaom"
 fi
 
 if [ $CPU == "x86_64" ];
 then
-  FIXES="--enable-asm --enable-libxavs2 --enable-libxavs"
+  FIXES="--enable-asm --enable-libxavs2 --enable-libxavs --enable-libdav1d --enable-libaom"
 fi
 
-export EXPEREMETAL="--disable-runtime-cpudetect --enable-small --enable-hardcoded-tables --enable-version3"
-export FLAGS="--enable-gpl --enable-nonfree --disable-indev=v4l2 
---enable-libmp3lame --enable-libx264  --enable-libx265 --enable-libvpx --enable-libvorbis --enable-libtheora --enable-libopus --enable-libfdk-aac --enable-libfreetype --enable-libass --enable-libfribidi --enable-fontconfig --enable-pthreads --enable-libxvid --enable-filters --enable-openssl --enable-librtmp --disable-protocol=udp,udplite
---enable-libopencore-amrwb --enable-libopencore-amrnb --enable-libvo-amrwbenc
---enable-libspeex --enable-libsoxr --enable-libwavpack --enable-libwebp"
+export EXPEREMETAL="--enable-small"
+export FLAGS="--enable-version3 --enable-gpl --enable-nonfree --disable-indev=v4l2 --enable-libmp3lame --enable-libx264  --enable-libx265 --enable-libvpx --enable-libvorbis --enable-libtheora --enable-libopus --enable-libfdk-aac --enable-libfreetype --enable-libass --enable-libfribidi --enable-fontconfig --enable-pthreads --enable-libxvid --enable-filters --enable-openssl --enable-librtmp --disable-protocol=udp,udplite --enable-libopencore-amrwb --enable-libopencore-amrnb --enable-libvo-amrwbenc --enable-libspeex --enable-libsoxr --enable-libwebp --enable-libxml2 --enable-libopenh264 --enable-mediacodec --enable-jni "
 
 
 ./configure $FLAGS \
@@ -69,7 +57,7 @@ make $J || exit 1
 make install 
 
 cat ffmpeg > "../build/ffmpeg_${CPU}"
-cat ffmpeg > "../../app/src/main/jniAssets/$SO_ARCH/ffmpeg"
+cat ffmpeg > "../../app/src/main/libs/$SO_ARCH/libffmpeg.so"
 
 
 readelf --program-headers ffmpeg
